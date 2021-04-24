@@ -14,7 +14,8 @@ function system:explode(entity, direction)
             components.explosion,
             {
                 [components.sparks]={direction},
-                [components.fire]={direction}
+                [components.fire]={direction},
+                [components.explosion_cloud]={direction}
             }
         )
         :add(components.position, entity[components.position]:unpack())

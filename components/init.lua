@@ -12,7 +12,8 @@ local smoke_circle_image = gfx.prerender(32, 32, function(w, h)
     gfx.ellipse("fill", w * 0.5, h * 0.5, w * 0.25, h * 0.25)
 end)
 
-function components.explosion_cloud()
+function components.explosion_cloud(dir)
+    dir = dir or 1
     return components.particles{
         image=smoke_circle_image,
         buffer=40,
@@ -23,11 +24,13 @@ function components.explosion_cloud()
             gfx.hex2color("6f3e23cf"),
             gfx.hex2color("6d758d00")
         ),
-        size={1, 3},
+        size={1, 2},
         speed={50, 600},
         acceleration={0, -600},
         damp=5,
-        area={"ellipse", 20, 20, 0, true}
+        dir=-math.pi* (0.5 + dir * 0.25),
+        spread=math.sqrt(2)
+        --area={"ellipse", 20, 20, 0, true}
     }
 end
 
@@ -74,9 +77,9 @@ function components.fire(dir)
             gfx.hex2color("fa6a0a0f"),
             gfx.hex2color("df3e2300")
         ),
-        size={1, 6},
+        size={1, 3},
         spread=3,
-        speed={200, 1000},
+        speed={100, 500},
         acceleration={0, -600},
         dir=-math.pi* (0.5 + dir * 0.25),
         damp=8,
