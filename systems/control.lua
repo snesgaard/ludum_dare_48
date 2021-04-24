@@ -19,4 +19,10 @@ function system:keypressed(key)
     end
 end
 
+function system:die(entity)
+    if not self.pool[entity] then return end
+
+    entity:update(components.controllable, false)
+end
+
 return system

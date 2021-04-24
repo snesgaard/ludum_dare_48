@@ -20,6 +20,12 @@ function systems.motion:update(dt)
     end
 end
 
+function systems.motion:die(entity)
+    if not self.pool[entity] then return end
+    entity:update(components.velocity, 0, 0)
+    entity:update(components.gravity, 0, 0)
+end
+
 systems.map = require(... .. ".map")
 
 systems.bump_clean = ecs.system(components.bump_world)
@@ -56,3 +62,5 @@ function systems.evil:keypressed(key)
         end
     end
 end
+
+systems.death = require(... .. ".death")

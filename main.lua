@@ -19,7 +19,8 @@ function love.load()
         systems.collision,
         systems.hitbox,
         systems.bump_clean,
-        systems.evil
+        systems.evil,
+        systems.death
     )
 
     map = sti("art/maps/build/blank.lua")
@@ -76,6 +77,10 @@ function love.draw()
     --map_draw(map, 0, 0)
     --frame:draw("body", 200, 100)
     world("draw")
+    gfx.origin()
+
+    if not rabbit[components.controllable] then
+    end
 end
 
 function love.keypressed(key, scancode, isrepeat)

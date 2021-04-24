@@ -100,3 +100,7 @@ components.explosion = ecs.assemblage(
 function components.evil()
     return {active=false, init_time=0}
 end
+
+function components.dead()
+    return true
+end
