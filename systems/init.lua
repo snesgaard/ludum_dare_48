@@ -44,3 +44,4 @@ function systems.bump_clean:update()
 end
 
 systems.controls = require(... .. ".control")
+systems.explosion = require(... .. ".explosion")

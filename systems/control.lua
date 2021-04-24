@@ -6,9 +6,11 @@ function system:keypressed(key)
         if key == "left" then
             entity[components.sprite]:update(components.mirror, true)
             entity:update(components.velocity, -200, 0)
+            self.world:event("explode", entity, -1)
         elseif key == "right" then
             entity[components.sprite]:update(components.mirror, false)
             entity:update(components.velocity, 200, 0)
+            self.world:event("explode", entity, 1)
         end
     end
 

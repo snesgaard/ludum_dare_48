@@ -11,6 +11,7 @@ function love.load()
         systems.animation,
         --root_motion_system,
         systems.particles,
+        systems.explosion,
         systems.hitbox_sprite,
         --systems.motion,
         systems.motion,
