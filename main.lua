@@ -10,7 +10,7 @@ function love.load()
         systems.map,
         systems.animation,
         --root_motion_system,
-        --systems.particles,
+        systems.particles,
         systems.hitbox_sprite,
         --systems.motion,
         systems.motion,

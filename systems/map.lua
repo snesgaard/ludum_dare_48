@@ -164,7 +164,22 @@ local function map_draw(self, tx, ty, sx, sy)
 end
 
 local function get_map(x, y)
-    return "art/maps/build/blank.lua"
+    --return "art/maps/build/funnel.lua"
+    local maps = {
+        "thorn_zigzag.lua",
+        "funnel.lua",
+        "dual_funnel.lua"
+    }
+
+    if y < 500 then
+        return "art/maps/build/blank.lua"
+    else
+        local rng = love.math.newRandomGenerator( y )
+        local index = rng:random(#maps)
+        --index = 3
+        local path = maps[index]
+        return string.format("art/maps/build/%s", path)
+    end
 end
 
 

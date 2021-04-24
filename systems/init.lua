@@ -9,7 +9,7 @@ function systems.motion:update(dt)
         v = v + g * dt
         p = p + v * dt
 
-        v.y = math.min(v.y, 200)
+        v.y = math.min(v.y, 250)
 
         if math.abs(v.x) > 50 then
             v.x = v.x * 0.95
