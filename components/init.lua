@@ -43,7 +43,7 @@ function components.sparks(dir)
         buffer=20,
         rate=0,
         emit=10,
-        lifetime={0.75, 1.2},
+        lifetime={0.25, 0.75},
         color={1, 1, 1, 1},
         size={1},
         speed={200, 500},
@@ -96,3 +96,7 @@ components.explosion = ecs.assemblage(
     components.explosion_flash, components.explosion_cloud, components.sparks,
     components.fire
 )
+
+function components.evil()
+    return {active=false, init_time=0}
+end

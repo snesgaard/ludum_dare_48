@@ -45,3 +45,14 @@ end
 
 systems.controls = require(... .. ".control")
 systems.explosion = require(... .. ".explosion")
+
+systems.evil = ecs.system(components.evil)
+
+function systems.evil:keypressed(key)
+    if key == "return" then
+        for _, entity in ipairs(self.pool) do
+            entity[components.evil].active = true
+            entity[components.evil].init_time = love.timer.getTime()
+        end
+    end
+end

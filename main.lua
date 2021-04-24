@@ -18,7 +18,8 @@ function love.load()
         systems.sprite,
         systems.collision,
         systems.hitbox,
-        systems.bump_clean
+        systems.bump_clean,
+        systems.evil
     )
 
     map = sti("art/maps/build/blank.lua")
@@ -36,6 +37,9 @@ function love.load()
         :add(components.bump_world, bump_world)
         :add(components.body, -8, -10, 16, 10)
         :add(components.controllable, true)
+
+    rotate_evil = ecs.entity(world)
+        :add(components.evil)
     --systems.collision.show()
 
         --[[
@@ -59,6 +63,15 @@ end
 function love.draw()
     --gfx.scale(2, 2)
     --map:draw(0, 0, 2, 2)
+    if rotate_evil[components.evil].active then
+        local t = rotate_evil[components.evil].init_time
+        local w, h = gfx.getWidth(), gfx.getHeight()
+        local dx, dy = -w * 0.5, -h * 0.5
+        gfx.translate(-dx, -dy)
+        gfx.rotate(love.timer.getTime() - t)
+        gfx.translate(dx, dy)
+    end
+
     camera.center_on_entity(rabbit, 2)
     --map_draw(map, 0, 0)
     --frame:draw("body", 200, 100)
