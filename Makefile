@@ -63,4 +63,5 @@ $(love_win64): $(love_win64_zip)
 
 $(love_file):
 	@mkdir -p $(dir $@)
+	make -C src/art
 	cd src; zip -9 -r ../$@ .

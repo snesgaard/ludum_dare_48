@@ -100,8 +100,8 @@ components.explosion = ecs.assemblage(
     components.fire
 )
 
-function components.evil()
-    return {active=false, init_time=0}
+function components.evil(duration)
+    return {active=false, timer=components.timer.create(duration)}
 end
 
 function components.dead()
@@ -110,4 +110,8 @@ end
 
 function components.wild()
     return {timer=components.timer.create(30), scale=1}
+end
+
+function components.evil_timer(dur)
+    return components.timer.create(dur)
 end
