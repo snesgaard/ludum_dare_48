@@ -43,7 +43,7 @@ function love.load()
 
     rotate_evil = ecs.entity(world)
         :add(components.evil)
-    systems.collision.show()
+    --systems.collision.show()
 
         --[[
     map = ecs.entity(world)
