@@ -163,20 +163,25 @@ local function map_draw(self, tx, ty, sx, sy)
 	gfx.pop()
 end
 
+local rng
+
 local function get_map(x, y)
     --return "art/maps/build/funnel.lua"
     local maps = {
         "thorn_zigzag.lua",
         "funnel.lua",
-        "dual_funnel.lua"
+        "dual_funnel.lua",
+        "swirl.lua",
+        --"blank.lua"
     }
 
     if y < 500 then
         return "art/maps/build/blank.lua"
     else
-        local rng = love.math.newRandomGenerator( y )
+        rng = rng or love.math.newRandomGenerator(love.timer.getTime())
+        --local rng = love.math.newRandomGenerator( y )
         local index = rng:random(#maps)
-        --index = 3
+        --index = 4
         local path = maps[index]
         return string.format("art/maps/build/%s", path)
     end

@@ -107,3 +107,7 @@ end
 function components.dead()
     return true
 end
+
+function components.wild()
+    return {timer=components.timer.create(30), scale=1}
+end

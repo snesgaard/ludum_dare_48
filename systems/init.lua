@@ -64,3 +64,25 @@ function systems.evil:keypressed(key)
 end
 
 systems.death = require(... .. ".death")
+
+systems.wild = ecs.system(components.wild)
+
+function systems.wild:update(dt)
+    for _, entity in ipairs(self.pool) do
+        local w = entity[components.wild]
+        if w.timer:update(dt) then
+            w.timer:reset()
+            w.scale = w.scale + 0.25
+        end
+    end
+end
+
+function systems.wild:gui()
+    for _, entity in ipairs(self.pool) do
+        local w = entity[components.wild]
+        gfx.setColor(1, 1, 1)
+        gfx.rectangle("fill", 50, 50, 20, 100)
+        gfx.setColor(0, 0, 0)
+        gfx.rectangle("fill", 50, 50, 20, 100 * w.timer:time_left_normalized())
+    end
+end

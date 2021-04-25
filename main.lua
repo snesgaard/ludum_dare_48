@@ -6,6 +6,7 @@ camera = require "camera"
 
 function love.load()
     world = ecs.world(
+        systems.wild,
         systems.controls,
         systems.map,
         systems.animation,
@@ -36,12 +37,13 @@ function love.load()
         :add(components.animation_map, atlas, {idle="rabbit"})
         :add(components.animation_state)
         :add(components.bump_world, bump_world)
-        :add(components.body, -8, -10, 16, 10)
+        :add(components.body, -7, -10, 14, 8)
         :add(components.controllable, true)
+        :add(components.wild)
 
     rotate_evil = ecs.entity(world)
         :add(components.evil)
-    --systems.collision.show()
+    systems.collision.show()
 
         --[[
     map = ecs.entity(world)
@@ -78,6 +80,11 @@ function love.draw()
     --frame:draw("body", 200, 100)
     world("draw")
     gfx.origin()
+
+    world("gui")
+    gfx.setColor(1, 0, 0)
+    local pos = rabbit[components.position]
+    gfx.printf(string.format("%i", pos.y * 0.1), gfx.getWidth() - 100, 50, 100)
 
     if not rabbit[components.controllable] then
     end
