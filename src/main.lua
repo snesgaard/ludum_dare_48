@@ -6,7 +6,7 @@ camera = require "camera"
 
 function love.load()
     world = ecs.world(
-        systems.wild,
+        --systems.wild,
         systems.controls,
         systems.map,
         systems.animation,
@@ -83,7 +83,7 @@ function text_box(text, x, y, w, h, align)
     }
     gfx.setFont(f)
     gfx.setColor(colors.side)
-    gfx.rectangle("fill", x, y, w, h + side, 2)
+    --gfx.rectangle("fill", x, y, w, h + side, 2)
     gfx.setColor(colors.bg)
     gfx.rectangle("fill", x, y, w, h, 2)
     gfx.setColor(colors.text)
@@ -108,12 +108,15 @@ function draw_gui(pos)
 
     local w = 100
     local x = 75
-    text_box("Explode", x, 2, w, 28)
-    text_box("Restart", x, 38, w, 11)
-    text_box("Don't press this!!", x, 56, w, 24)
+    text_box("Explode", x, 2, w, 28 + 5)
+    text_box("Restart", x, 38, w, 11 + 5)
+    text_box("Don't press this!!", x, 56, w, 24 + 5)
 
     text_box("Depth", x + 215, 56, 32, 20)
     text_box(string.format("%im", pos.y * 0.1), x + 250, 56, 48, 20, "right")
+
+    --gfx.setColor(1, 1, 1)
+    --atlas:get_frame("evil_meter"):draw(0, 0, 0, 2)
 end
 
 function love.draw()

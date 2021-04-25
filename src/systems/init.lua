@@ -75,12 +75,27 @@ function systems.evil_monitor:keypressed(key)
 end
 
 function systems.evil_monitor:gui()
+    local atlas = get_atlas("art/characters")
     for _, entity in ipairs(self.pool) do
-        local w = entity[components.evil_timer]
+        --local w = entity[components.evil_timer]
+        --gfx.setColor(1, 1, 1)
+        --gfx.rectangle("fill", 50, 50, 20, 100)
+        --gfx.setColor(0, 0, 0)
+        --gfx.rectangle("fill", 50, 50, 20, 100 * w:time_left_normalized())
+        gfx.push()
+        gfx.translate(20, 20)
+        gfx.scale(2, 2)
         gfx.setColor(1, 1, 1)
-        gfx.rectangle("fill", 50, 50, 20, 100)
-        gfx.setColor(0, 0, 0)
-        gfx.rectangle("fill", 50, 50, 20, 100 * w:time_left_normalized())
+        atlas:get_frame("evil_meter/back"):draw(0, 0)
+        local frame = atlas:get_frame("evil_meter/front")
+        local slice = frame.slices.fill
+        gfx.setColor(gfx.hex2color("7b0a0a"))
+        local s = 1 - entity[components.evil_timer]:time_left_normalized()
+        local x, y, w, h = slice:unpack()
+        gfx.rectangle("fill", x, y + h * (1 - s), w, h * s)
+        gfx.setColor(1, 1, 1)
+        frame:draw(0, 0)
+        gfx.pop()
     end
 end
 
