@@ -179,6 +179,8 @@ local function get_map(x, y)
 
     if y < 500 then
         return "art/maps/build/blank.lua"
+    elseif y > 6000 and love.math.random(100) < 5 then
+        return "art/maps/build/end.lua"
     else
         rng = rng or love.math.newRandomGenerator(love.timer.getTime())
         --local rng = love.math.newRandomGenerator( y )
