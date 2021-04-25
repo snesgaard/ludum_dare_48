@@ -172,6 +172,8 @@ local function get_map(x, y)
         "funnel.lua",
         "dual_funnel.lua",
         "swirl.lua",
+        "block.lua",
+        "double_zigzag.lua",
         --"blank.lua"
     }
 
@@ -181,7 +183,7 @@ local function get_map(x, y)
         rng = rng or love.math.newRandomGenerator(love.timer.getTime())
         --local rng = love.math.newRandomGenerator( y )
         local index = rng:random(#maps)
-        --index = 4
+        --index = 5
         local path = maps[index]
         return string.format("art/maps/build/%s", path)
     end

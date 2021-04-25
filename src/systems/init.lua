@@ -59,7 +59,10 @@ systems.evil_monitor = ecs.system(components.evil_timer)
 function systems.evil_monitor:update(dt)
     for _, entity in ipairs(self.pool) do
         if entity[components.evil_timer]:update(dt) then
-            entity[components.evil_timer]:reset()
+            entity:update(
+                components.evil_timer,
+                math.max(1, entity[components.evil_timer].duration - 5)
+            )
             self.world:event("evil_activate")
         end
     end
@@ -68,7 +71,10 @@ end
 function systems.evil_monitor:keypressed(key)
     if key == "return" then
         for _, entity in ipairs(self.pool) do
-            entity[components.evil_timer]:reset()
+            entity:update(
+                components.evil_timer,
+                math.max(1, entity[components.evil_timer].duration - 5)
+            )
             self.world:event("evil_activate")
         end
     end

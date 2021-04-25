@@ -11,11 +11,11 @@ function system:keypressed(key)
         local s = w.scale
         if key == "left" then
             entity[components.sprite]:update(components.mirror, true)
-            entity:update(components.velocity, v.x - 200 * s, 0)
+            entity:update(components.velocity, v.x - 150 * s, 0)
             self.world:event("explode", entity, -1)
         elseif key == "right" then
             entity[components.sprite]:update(components.mirror, false)
-            entity:update(components.velocity, v.x + 200 * s, 0)
+            entity:update(components.velocity, v.x + 150 * s, 0)
             self.world:event("explode", entity, 1)
         elseif key == "up" then
             entity[components.sprite]:update(components.mirror, false)
